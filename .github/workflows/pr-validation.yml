@@ -1,0 +1,30 @@
+# ITNOA
+name: TimeManagement Pull Request Validation
+
+on:
+  pull_request:
+    paths-ignore:
+      - '**.md'
+      - 'Source/ClientApps/**'
+      - 'Tests/ClientApps/**'
+      - '.github/workflows/pr-validation-maui.yml'
+  push:
+    branches:
+      - main
+    paths-ignore:
+      - '**.md'
+      - 'Source/ClientApps/**'
+      - 'Tests/ClientApps/**'
+      - '.github/workflows/pr-validation-maui.yml'
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - name: Setup .NET (global.json)
+        uses: actions/setup-dotnet@v6
+      - name: Build
+        run: dotnet build TimeManagement.Web.slnf
+      - name: Test
+        run: dotnet test --solution TimeManagement.Web.slnf --no-build --no-progress --output detailed
