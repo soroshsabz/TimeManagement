@@ -4,7 +4,7 @@
   </Folder>
   <Folder Name="/Source/" />
   <Folder Name="/Source/ClientApps/">
-    <Project Path="Source/ClientApps/MauiApp/MauiApp.csproj" Id="97063691-1c7f-439f-a9bc-765ad2c967b0">
+    <Project Path="Source/ClientApps/MauiClientApp/MauiClientApp.csproj" Id="d4901290-512d-4a26-b644-650bafa22509">
       <Deploy Solution="Debug|*" />
     </Project>
   </Folder>
