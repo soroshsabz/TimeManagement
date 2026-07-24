@@ -31,7 +31,7 @@ A modern, light, and efficient time management and task scheduling application b
 
 ### Prerequisites
 
-- [.NET SDK](https://dotnet.microsoft.com/download) (6.0 or later recommended)
+- [.NET SDK](https://dotnet.microsoft.com/download) (10.0 or later recommended)
 
 ### Installation & Build
 
@@ -60,11 +60,11 @@ dotnet cake --target=Test
 
 Contributions are welcome under the terms of the GPL!
 
-#. Fork the project.
-#. Create your feature branch (git checkout -b feature/NewFeature).
-#. Commit your changes (git commit -m 'Add NewFeature').
-#. Push to the branch (git push origin feature/NewFeature).
-#. Open a Pull Request.
+1. Fork the project.
+1. Create your feature branch (git checkout -b feature/NewFeature).
+1. Commit your changes (git commit -m 'Add NewFeature').
+1. Push to the branch (git push origin feature/NewFeature).
+1. Open a Pull Request.
 
 ## 📄 License
 
