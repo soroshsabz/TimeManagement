@@ -1,1 +1,11 @@
-<Solution />
+<Solution>
+  <Folder Name="/Solution Items/">
+    <File Path=".gitignore" />
+  </Folder>
+  <Folder Name="/Source/" />
+  <Folder Name="/Source/ClientApps/">
+    <Project Path="Source/ClientApps/MauiApp/MauiApp.csproj" Id="97063691-1c7f-439f-a9bc-765ad2c967b0">
+      <Deploy Solution="Debug|*" />
+    </Project>
+  </Folder>
+</Solution>
