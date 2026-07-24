@@ -25,7 +25,9 @@
 		     For individual files, you can override by setting Inflator metadata:
 		       <MauiXaml Update="MyPage.xaml" Inflator="Default" /> (reverts to defaults: Runtime for Debug, XamlC for Release)
 		       <MauiXaml Update="MyPage.xaml" Inflator="Runtime" /> (force runtime inflation) -->
+		<!-- 
 		<MauiXamlInflator>SourceGen</MauiXamlInflator>
+		-->
 		<MauiEnableXamlCBindingWithSourceCompilation>true</MauiEnableXamlCBindingWithSourceCompilation>
 
 		<!-- Display name -->
@@ -74,6 +76,21 @@
 		<PackageReference Include="CommunityToolkit.Maui" Version="14.2.2" />
 		<PackageReference Include="Microsoft.Data.Sqlite.Core" Version="10.0.10" />
 		<PackageReference Include="SQLitePCLRaw.bundle_green" Version="2.1.11" />
+		<PackageReference Include="SQLitePCLRaw.lib.e_sqlite3" Version="2.1.12" />
+		<PackageReference Include="SQLitePCLRaw.lib.e_sqlite3.android" Version="2.1.12" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Folder Include="Data\" />
+	  <Folder Include="Models\" />
+	  <Folder Include="PageModels\" />
+	  <Folder Include="Pages\Controls\" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <MauiXaml Update="Pages\MainPage.xaml" Inflator="Default">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	</ItemGroup>
 	
 </Project>
