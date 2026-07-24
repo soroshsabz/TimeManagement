@@ -1,0 +1,23 @@
+# ITNOA
+#
+# Pull Request Labeler Github Action Configuration: https://github.com/marketplace/actions/labeler
+documentation:
+- changed-files:
+  - any-glob-to-any-file: 'Documents/**'
+
+modules:
+- changed-files:
+  - any-glob-to-any-file: '**/*.ixx'
+
+build-system:
+- changed-files:
+  - any-glob-to-any-file: 'CM*'
+  - any-glob-to-any-file: '**/*.csproj'
+  - any-glob-to-any-file: '**/*.cake'
+  - any-glob-to-any-file: ["**/*.ps1", "**/*Dockerfile*", "**/*.sh", "**/*pom.xml", ".github/**/*"]
+
+feature:
+- head-branch: ['^Feature', 'Feature']
+
+bugfix:
+- head-branch: ['^Fix', 'Bug']
