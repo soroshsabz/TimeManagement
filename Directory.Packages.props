@@ -76,6 +76,16 @@
     <PackageVersion Include="Grpc.AspNetCore" Version="$(GrpcVersion)" />
     <PackageVersion Include="Grpc.Net.ClientFactory" Version="$(GrpcVersion)" />
     <PackageVersion Include="Grpc.Tools" Version="$(GrpcVersion)" PrivateAssets="All" />
+    <!-- MAUI -->
+    <PackageVersion Include="Microsoft.Maui.Controls" Version="10.0.90" />
+    <PackageVersion Include="Microsoft.Extensions.Logging.Debug" Version="$(DotnetPackagesVersion)" />
+    <PackageVersion Include="CommunityToolkit.Mvvm" Version="8.4.2" />
+    <PackageVersion Include="CommunityToolkit.Maui" Version="14.2.2" />
+    <!-- SQLite -->
+    <PackageVersion Include="Microsoft.Data.Sqlite.Core" Version="$(DotnetPackagesVersion)" />
+    <PackageVersion Include="SQLitePCLRaw.bundle_green" Version="2.1.11" />
+    <PackageVersion Include="SQLitePCLRaw.lib.e_sqlite3" Version="2.1.12" />
+    <PackageVersion Include="SQLitePCLRaw.lib.e_sqlite3.android" Version="2.1.12" />
     <!-- Miscellaneous -->
     <PackageVersion Include="Dapper" Version="2.1.79" />
     <PackageVersion Include="FluentValidation" Version="12.1.1" />

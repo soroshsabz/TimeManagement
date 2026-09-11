@@ -1,0 +1,22 @@
+<Project Sdk="MSTest.Sdk">
+
+	<PropertyGroup>
+		<!-- Match the Windows target framework of the app so the ProjectReference resolves -->
+		<TargetFramework>net10.0-windows10.0.19041.0</TargetFramework>
+		<RootNamespace>MauiClientApp.UnitTests</RootNamespace>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<Nullable>enable</Nullable>
+		<IsPackable>false</IsPackable>
+		<!-- The MAUI app's resizetizer items flow transitively via the ProjectReference;
+		     tests don't need image assets, so disable it to avoid duplicate icon errors. -->
+		<DisableResizetizer>true</DisableResizetizer>
+		<!-- Tests don't need the Windows App SDK bootstrap auto-initializer that flows
+		     transitively from the app (it would run at test-host startup). -->
+		<WindowsAppSdkBootstrapInitialize>false</WindowsAppSdkBootstrapInitialize>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<ProjectReference Include="..\..\..\Source\ClientApps\MauiClientApp\MauiClientApp.csproj" />
+	</ItemGroup>
+
+</Project>

@@ -1,11 +1,11 @@
-namespace MauiClientApp.Services
+﻿namespace MauiClientApp.Services
 {
     /// <summary>
     /// Modal Error Handler.
     /// </summary>
     public class ModalErrorHandler : IErrorHandler
     {
-        SemaphoreSlim _semaphore = new(1, 1);
+        readonly SemaphoreSlim _semaphore = new(1, 1);
 
         /// <summary>
         /// Handle error in UI.

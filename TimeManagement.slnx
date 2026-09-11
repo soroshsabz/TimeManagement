@@ -8,6 +8,9 @@
     <File Path="README.md" />
   </Folder>
   <Folder Name="/Source/" />
+  <Folder Name="/Tests/">
+    <Project Path="Tests/ClientApps/MauiClientApp.UnitTests/MauiClientApp.UnitTests.csproj" Id="b4f5fb8c-72c0-4246-9f20-94eb9092be1c" />
+  </Folder>
   <Folder Name="/Source/ClientApps/">
     <Project Path="Source/ClientApps/MauiClientApp/MauiClientApp.csproj" Id="d4901290-512d-4a26-b644-650bafa22509">
       <Deploy Solution="Debug|*" />
