@@ -25,19 +25,26 @@ jobs:
     runs-on: windows-latest
     steps:
       - uses: actions/checkout@v7
+      # Cache the MAUI workload packs (fixed install locations on the runner) so
+      # 'dotnet workload install' only runs on a cache miss. Key includes global.json
+      # (SDK feature band) and Directory.Packages.props (MAUI package versions).
+      - name: Cache MAUI workloads
+        uses: actions/cache@v4
+        id: maui-workloads
+        with:
+          path: |
+            C:\Program Files\dotnet\packs
+            C:\Program Files\dotnet\sdk-manifests
+            C:\Program Files\dotnet\metadata\workloads
+          key: maui-workloads-${{ runner.os }}-${{ hashFiles('global.json', 'Directory.Packages.props') }}
       - name: Setup .NET (global.json)
         uses: actions/setup-dotnet@v6
 
-      - name: Update Workloads
-        run: dotnet workload update
-
+      # 'maui' brings in android, ios, maccatalyst, and maui-windows.
+      # No 'workload update' needed on a fresh/ephemeral runner.
       - name: Install Workloads
-        shell: pwsh
-        run: |
-          dotnet workload install android
-          dotnet workload install ios
-          dotnet workload install maccatalyst
-          dotnet workload install maui
+        if: steps.maui-workloads.outputs.cache-hit != 'true'
+        run: dotnet workload install maui
 
       - name: Build
         run: dotnet build Source/ClientApps/MauiClientApp/MauiClientApp.csproj

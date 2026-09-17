@@ -92,14 +92,19 @@ jobs:
 
     # Manual build for compiled languages: build the whole solution so CodeQL
     # analyzes every project (WebApps, ClientApps, and Tests).
-    - name: Install MAUI workloads
+    - name: Cache MAUI workloads
       if: matrix.build-mode == 'manual'
-      run: |
-        dotnet workload update
-        dotnet workload install android
-        dotnet workload install ios
-        dotnet workload install maccatalyst
-        dotnet workload install maui
+      uses: actions/cache@v4
+      id: maui-workloads
+      with:
+        path: |
+          C:\Program Files\dotnet\packs
+          C:\Program Files\dotnet\sdk-manifests
+          C:\Program Files\dotnet\metadata\workloads
+        key: maui-workloads-${{ runner.os }}-${{ hashFiles('global.json', 'Directory.Packages.props') }}
+    - name: Install MAUI workloads
+      if: matrix.build-mode == 'manual' && steps.maui-workloads.outputs.cache-hit != 'true'
+      run: dotnet workload install maui
     - name: Build
       if: matrix.build-mode == 'manual'
       run: dotnet build TimeManagement.slnx
