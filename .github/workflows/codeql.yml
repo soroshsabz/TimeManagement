@@ -72,6 +72,7 @@ jobs:
 
     # Install .NET SDKs
     - name: Install .NET SDKs
+      if: matrix.build-mode == 'manual'
       uses: actions/setup-dotnet@v5
       with:
         dotnet-version: |
