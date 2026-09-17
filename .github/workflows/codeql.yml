@@ -72,10 +72,13 @@ jobs:
 
     # Install .NET SDKs
     - name: Install .NET SDKs
-      uses: actions/setup-dotnet@v5
+      if: matrix.build-mode == 'manual'
+      uses: actions/setup-dotnet@v6
       with:
         dotnet-version: |
           10.0.x
+        cache: true
+        cache-dependency-path: '**/*.csproj'
 
     # Initializes the CodeQL tools for scanning.
     - name: Initialize CodeQL
@@ -92,14 +95,23 @@ jobs:
 
     # Manual build for compiled languages: build the whole solution so CodeQL
     # analyzes every project (WebApps, ClientApps, and Tests).
-    - name: Install MAUI workloads
+    # Workload install takes several minutes; cache the packs so most runs
+    # only restore them. Key on global.json so an SDK bump invalidates it.
+    - name: Cache MAUI workloads
       if: matrix.build-mode == 'manual'
-      run: |
-        dotnet workload update
-        dotnet workload install android
-        dotnet workload install ios
-        dotnet workload install maccatalyst
-        dotnet workload install maui
+      id: workload-cache
+      uses: actions/cache@v6
+      with:
+        path: |
+          C:\Program Files\dotnet\packs
+          C:\Program Files\dotnet\library-packs
+          C:\Program Files\dotnet\sdk-manifests
+          C:\Program Files\dotnet\metadata
+          C:\Program Files\dotnet\workload
+        key: maui-workloads-${{ hashFiles('global.json') }}
+    - name: Install MAUI workloads
+      if: matrix.build-mode == 'manual' && steps.workload-cache.outputs.cache-hit != 'true'
+      run: dotnet workload install maui --skip-manifest-update
     - name: Build
       if: matrix.build-mode == 'manual'
       run: dotnet build TimeManagement.slnx
