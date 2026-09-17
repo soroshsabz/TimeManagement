@@ -83,7 +83,7 @@
     <PackageVersion Include="Grpc.Net.ClientFactory" Version="$(GrpcVersion)" />
     <PackageVersion Include="Grpc.Tools" Version="$(GrpcVersion)" PrivateAssets="All" />
     <!-- MAUI -->
-    <PackageVersion Include="Microsoft.Maui.Controls" Version="10.0.90" />
+    <PackageVersion Include="Microsoft.Maui.Controls" Version="10.0.101" />
     <PackageVersion Include="Microsoft.Extensions.Logging.Debug" Version="$(DotnetPackagesVersion)" />
     <PackageVersion Include="CommunityToolkit.Mvvm" Version="8.4.2" />
     <PackageVersion Include="CommunityToolkit.Maui" Version="14.2.2" />
