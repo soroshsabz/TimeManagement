@@ -1,0 +1,17 @@
+{
+  "name": "TimeManagement",
+  "version": "0.1.0",
+  "description": "A clean, intuitive time management application designed to streamline daily scheduling, prioritize tasks, and optimize personal productivity with ease.",
+  "directories": {
+    "test": "Tests"
+  },
+  "scripts": {},
+  "keywords": [],
+  "author": "",
+  "license": "GPLv3",
+  "devDependencies": {
+    "@playwright/test": "^1.61.1",
+    "@types/node": "^26.1.1",
+    "dotenv": "^17.4.2"
+  }
+}

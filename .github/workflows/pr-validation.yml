@@ -1,0 +1,38 @@
+# ITNOA
+name: TimeManagement Pull Request Validation
+
+permissions:
+  contents: read
+
+on:
+  pull_request:
+    paths-ignore:
+      - '**.md'
+      - 'Source/ClientApps/**'
+      - 'Tests/ClientApps/**'
+      - '.github/workflows/pr-validation-maui.yml'
+  push:
+    branches:
+      - main
+    paths-ignore:
+      - '**.md'
+      - 'Source/ClientApps/**'
+      - 'Tests/ClientApps/**'
+      - '.github/workflows/pr-validation-maui.yml'
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - name: Setup .NET (global.json)
+        uses: actions/setup-dotnet@v6
+      - name: Build
+        run: dotnet build TimeManagement.WebApps.slnf
+      - name: Install Playwright Browsers
+        # UseArtifactsOutput=true (Directory.Build.props) puts the generated playwright.ps1
+        # under artifacts/bin/<project>/debug instead of bin/Debug/net10.0.
+        # Required because TimeManagement.WebApps.slnf includes the Playwright-based SystemTests.
+        run: pwsh artifacts/bin/TimeManagement.BlazorWebApp.SystemTests/debug/playwright.ps1 install --with-deps chromium
+      - name: Test
+        run: dotnet test --solution TimeManagement.WebApps.slnf --no-build --no-progress --output detailed

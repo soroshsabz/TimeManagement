@@ -1,3 +1,4 @@
+<!-- markdownlint-disable-next-line MD033 MD041 -->
 <center>ITNOA</center>
 
 # ⏳ TimeManagement

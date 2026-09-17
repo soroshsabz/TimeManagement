@@ -1,0 +1,46 @@
+# ITNOA
+name: TimeManagment Pull Request Validation - .NET MAUI
+
+on:
+  pull_request:
+    branches:
+      - '**'
+    paths:
+      - 'Source/ClientApps/MauiClientApp/**'
+      - 'Tests/ClientApps/MauiClientApp.UnitTests/**'
+      - '.github/workflows/pr-validation-maui.yml'
+  push:
+    branches:
+      - main
+    paths:
+      - 'Source/ClientApps/MauiClientApp/**'
+      - 'Tests/ClientApps/MauiClientApp.UnitTests/**'
+      - '.github/workflows/pr-validation-maui.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v7
+      - name: Setup .NET (global.json)
+        uses: actions/setup-dotnet@v6
+
+      - name: Update Workloads
+        run: dotnet workload update
+
+      - name: Install Workloads
+        shell: pwsh
+        run: |
+          dotnet workload install android
+          dotnet workload install ios
+          dotnet workload install maccatalyst
+          dotnet workload install maui
+
+      - name: Build
+        run: dotnet build Source/ClientApps/MauiClientApp/MauiClientApp.csproj
+
+      - name: Test
+        run: dotnet test --project Tests/ClientApps/MauiClientApp.UnitTests/MauiClientApp.UnitTests.csproj --no-progress --output detailed
