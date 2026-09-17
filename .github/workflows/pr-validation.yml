@@ -1,6 +1,9 @@
 # ITNOA
 name: TimeManagement Pull Request Validation
 
+permissions:
+  contents: read
+
 on:
   pull_request:
     paths-ignore:
