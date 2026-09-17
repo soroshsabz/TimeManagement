@@ -30,7 +30,9 @@ jobs:
     #   - https://gh.io/supported-runners-and-hardware-resources
     #   - https://gh.io/using-larger-runners (GitHub.com only)
     # Consider using larger runners or machines with greater resources for possible analysis time improvements.
-    runs-on: ${{ (matrix.language == 'swift' && 'macos-latest') || 'ubuntu-latest' }}
+    # windows-latest for csharp: TimeManagement.slnx contains MAUI client projects and
+    # Windows-targeting test projects that cannot build on the Linux runner.
+    runs-on: ${{ (matrix.language == 'swift' && 'macos-latest') || (matrix.language == 'csharp' && 'windows-latest') || 'ubuntu-latest' }}
     permissions:
       # required for all workflows
       security-events: write
@@ -49,7 +51,7 @@ jobs:
         - language: actions
           build-mode: none
         - language: csharp
-          build-mode: autobuild
+          build-mode: manual
         # CodeQL supports the following values keywords for 'language': 'actions', 'c-cpp', 'csharp', 'go', 'java-kotlin', 'javascript-typescript', 'python', 'ruby', 'rust', 'swift'
         # Use `c-cpp` to analyze code written in C, C++ or both
         # Use 'java-kotlin' to analyze code written in Java, Kotlin or both
@@ -88,10 +90,19 @@ jobs:
         # For more details on CodeQL's query packs, refer to: https://docs.github.com/en/code-security/code-scanning/automatically-scanning-your-code-for-vulnerabilities-and-errors/configuring-code-scanning#using-queries-in-ql-packs
         queries: security-extended,security-and-quality
 
-    # Autobuild attempts to build any compiled languages  (C/C++, C#, or Java).
-    # If this step fails, then you should remove it and run the build manually (see below)
-    - name: Autobuild
-      uses: github/codeql-action/autobuild@v4
+    # Manual build for compiled languages: build the whole solution so CodeQL
+    # analyzes every project (WebApps, ClientApps, and Tests).
+    - name: Install MAUI workloads
+      if: matrix.build-mode == 'manual'
+      run: |
+        dotnet workload update
+        dotnet workload install android
+        dotnet workload install ios
+        dotnet workload install maccatalyst
+        dotnet workload install maui
+    - name: Build
+      if: matrix.build-mode == 'manual'
+      run: dotnet build TimeManagement.slnx
 
     - name: Perform CodeQL Analysis
       uses: github/codeql-action/analyze@v4
