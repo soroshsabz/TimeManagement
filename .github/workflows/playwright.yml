@@ -4,6 +4,8 @@
 # One API to drive Chromium, Firefox, and WebKit — in your tests, your scripts, and your agent workflows.
 # These are the .NET (NUnit) system tests: Tests/WebApps/TimeManagement.BlazorWebApp.SystemTests
 name: Playwright Tests for TimeManagement Project
+permissions:
+  contents: read
 on:
   push:
     branches: [ main ]
