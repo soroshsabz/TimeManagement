@@ -1,0 +1,9 @@
+{
+  "solution": {
+    "path": "TimeManagement.slnx",
+    "projects": [
+      "Source\\ClientApps\\MauiClientApp\\MauiClientApp.csproj",
+      "Tests\\ClientApps\\MauiClientApp.UnitTests\\MauiClientApp.UnitTests.csproj"
+    ]
+  }
+}
