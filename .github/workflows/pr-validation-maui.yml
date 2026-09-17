@@ -21,21 +21,35 @@ permissions:
   contents: read
 
 jobs:
-  test:
+  validate:
     runs-on: windows-latest
+    strategy:
+      # Keep one platform's result even if the other fails.
+      fail-fast: false
+      matrix:
+        include:
+          - platform: windows
+            tfm: net10.0-windows10.0.19041.0
+          - platform: android
+            tfm: net10.0-android
     steps:
       - uses: actions/checkout@v7
 
       - name: Setup .NET (global.json)
         uses: actions/setup-dotnet@v6
+        with:
+          cache: true
+          cache-dependency-path: '**/*.csproj'
 
-      # 'maui' brings in android, ios, maccatalyst, and maui-windows.
-      # No 'workload update' needed on a fresh/ephemeral runner.
+      # Each leg installs only the workload it needs; 'maui' would also pull
+      # ios and maccatalyst, which nothing in CI builds.
       - name: Install Workloads
-        run: dotnet workload install maui
+        run: dotnet workload install maui-${{ matrix.platform }} --skip-manifest-update
 
       - name: Build
-        run: dotnet build Source/ClientApps/MauiClientApp/MauiClientApp.csproj
+        run: dotnet build Source/ClientApps/MauiClientApp/MauiClientApp.csproj -f ${{ matrix.tfm }}
 
+      # Unit tests target the Windows TFM only.
       - name: Test
+        if: matrix.platform == 'windows'
         run: dotnet test --project Tests/ClientApps/MauiClientApp.UnitTests/MauiClientApp.UnitTests.csproj --no-progress --output detailed
