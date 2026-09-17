@@ -86,7 +86,7 @@
     <PackageVersion Include="Microsoft.Maui.Controls" Version="10.0.90" />
     <PackageVersion Include="Microsoft.Extensions.Logging.Debug" Version="$(DotnetPackagesVersion)" />
     <PackageVersion Include="CommunityToolkit.Mvvm" Version="8.4.2" />
-    <PackageVersion Include="CommunityToolkit.Maui" Version="14.2.2" />
+    <PackageVersion Include="CommunityToolkit.Maui" Version="15.0.1" />
     <!-- SQLite -->
     <PackageVersion Include="Microsoft.Data.Sqlite.Core" Version="$(DotnetPackagesVersion)" />
     <PackageVersion Include="SQLitePCLRaw.bundle_green" Version="2.1.11" />
