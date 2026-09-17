@@ -18,7 +18,11 @@ namespace MauiClientApp.Utilities
             {
                 await task;
             }
-            catch (Exception ex)
+            catch (OperationCanceledException)
+            {
+                // Task cancellation is expected in some flows; do not treat as an error.
+            }
+            catch (Exception ex) when (ex is not OperationCanceledException)
             {
                 handler?.HandleError(ex);
             }

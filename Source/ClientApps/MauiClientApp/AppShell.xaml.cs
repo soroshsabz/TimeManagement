@@ -12,7 +12,7 @@ namespace MauiClientApp
         }
         public static async Task DisplaySnackbarAsync(string message)
         {
-            CancellationTokenSource cancellationTokenSource = new CancellationTokenSource();
+            using var cancellationTokenSource = new CancellationTokenSource();
 
             var snackbarOptions = new SnackbarOptions
             {
@@ -37,7 +37,7 @@ namespace MauiClientApp
 
             var toast = Toast.Make(message, textSize: 18);
 
-            var cts = new CancellationTokenSource(TimeSpan.FromSeconds(5));
+            using var cts = new CancellationTokenSource(TimeSpan.FromSeconds(5));
             await toast.Show(cts.Token);
         }
     }
