@@ -9,7 +9,6 @@ namespace MauiClientApp
         public AppShell()
         {
             InitializeComponent();
-            var currentTheme = Application.Current!.RequestedTheme;
         }
         public static async Task DisplaySnackbarAsync(string message)
         {
