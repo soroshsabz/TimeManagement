@@ -1,0 +1,10 @@
+{
+  "solution": {
+    "path": "TimeManagement.slnx",
+    "projects": [
+      "Source\\WebApps\\TimeManagement.BlazorWebApp\\TimeManagement.BlazorWebApp.Client\\TimeManagement.BlazorWebApp.Client.csproj",
+      "Source\\WebApps\\TimeManagement.BlazorWebApp\\TimeManagement.BlazorWebApp\\TimeManagement.BlazorWebApp.csproj",
+      "Tests\\WebApps\\TimeManagement.BlazorWebApp.SystemTests\\TimeManagement.BlazorWebApp.SystemTests.csproj"
+    ]
+  }
+}

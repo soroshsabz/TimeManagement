@@ -8,12 +8,21 @@
     <File Path="README.md" />
   </Folder>
   <Folder Name="/Source/" />
-  <Folder Name="/Tests/">
-    <Project Path="Tests/ClientApps/MauiClientApp.UnitTests/MauiClientApp.UnitTests.csproj" Id="b4f5fb8c-72c0-4246-9f20-94eb9092be1c" />
+  <Folder Name="/Source/Core/" />
+  <Folder Name="/Source/WebApps/">
+    <Project Path="Source/WebApps/TimeManagement.BlazorWebApp/TimeManagement.BlazorWebApp.Client/TimeManagement.BlazorWebApp.Client.csproj" Id="12c7f630-73ce-446e-9a63-1444860abb83" />
+    <Project Path="Source/WebApps/TimeManagement.BlazorWebApp/TimeManagement.BlazorWebApp/TimeManagement.BlazorWebApp.csproj" Id="ffc07d85-55d7-4c2c-831d-4fd92b32c61f" />
   </Folder>
+  <Folder Name="/Tests/" />
   <Folder Name="/Source/ClientApps/">
     <Project Path="Source/ClientApps/MauiClientApp/MauiClientApp.csproj" Id="d4901290-512d-4a26-b644-650bafa22509">
       <Deploy Solution="Debug|*" />
     </Project>
+  </Folder>
+  <Folder Name="/Tests/ClientApps/">
+    <Project Path="Tests/ClientApps/MauiClientApp.UnitTests/MauiClientApp.UnitTests.csproj" Id="b4f5fb8c-72c0-4246-9f20-94eb9092be1c" />
+  </Folder>
+  <Folder Name="/Tests/WebApps/">
+    <Project Path="Tests/WebApps/TimeManagement.BlazorWebApp.SystemTests/TimeManagement.BlazorWebApp.SystemTests.csproj" Id="cd3377fc-6175-41ca-ab54-361a2e519ebb" />
   </Folder>
 </Solution>

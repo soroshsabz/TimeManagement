@@ -25,6 +25,6 @@ jobs:
       - name: Setup .NET (global.json)
         uses: actions/setup-dotnet@v6
       - name: Build
-        run: dotnet build TimeManagement.Web.slnf
+        run: dotnet build TimeManagement.WebApps.slnf
       - name: Test
-        run: dotnet test --solution TimeManagement.Web.slnf --no-build --no-progress --output detailed
+        run: dotnet test --solution TimeManagement.WebApps.slnf --no-build --no-progress --output detailed

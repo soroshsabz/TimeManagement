@@ -1,7 +1,8 @@
 # ITNOA
 # Playwright enables reliable web automation for testing, scripting, and AI agents.
 #
-# One API to drive Chromium, Firefox, and WebKit — in your tests, your scripts, and your agent workflows. Available for TypeScript, Python, .NET, and Java.
+# One API to drive Chromium, Firefox, and WebKit — in your tests, your scripts, and your agent workflows.
+# These are the .NET (NUnit) system tests: Tests/WebApps/TimeManagement.BlazorWebApp.SystemTests
 name: Playwright Tests for TimeManagement Project
 on:
   push:
@@ -24,31 +25,13 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v7
-    - uses: actions/setup-dotnet@v6
-      with:
-        dotnet-version: '10.0.x'
-        dotnet-quality: 'ga'
-    - uses: actions/setup-node@v7
-      with:
-        node-version: lts/*
-    - name: Install dependencies
-      run: npm ci
-    - name: Install .NET HTTPS Development Certificate
-      # if: matrix.os == 'ubuntu-latest'
-      run: |
-        dotnet dev-certs https --clean
-        dotnet dev-certs https --trust
+    - name: Setup .NET (global.json)
+      uses: actions/setup-dotnet@v6
+    - name: Build
+      run: dotnet build Tests/WebApps/TimeManagement.BlazorWebApp.SystemTests/TimeManagement.BlazorWebApp.SystemTests.csproj
     - name: Install Playwright Browsers
-      run: npx playwright install chromium
+      # UseArtifactsOutput=true (Directory.Build.props) puts the generated playwright.ps1
+      # under artifacts/bin/<project>/debug instead of bin/Debug/net10.0.
+      run: pwsh artifacts/bin/TimeManagement.BlazorWebApp.SystemTests/debug/playwright.ps1 install --with-deps chromium
     - name: Run Playwright tests
-      run: npx playwright test
-      env:
-        ESHOP_USE_HTTP_ENDPOINTS: 1
-        USERNAME1: bob
-        PASSWORD: Pass123$
-    - uses: actions/upload-artifact@v7
-      if: always()
-      with:
-        name: playwright-report
-        path: playwright-report/
-        retention-days: 30
+      run: dotnet test Tests/WebApps/TimeManagement.BlazorWebApp.SystemTests/TimeManagement.BlazorWebApp.SystemTests.csproj --no-build --no-progress --output detailed

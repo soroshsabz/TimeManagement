@@ -30,8 +30,12 @@
     <!-- Version together with ASP.NET -->
     <PackageVersion Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="$(DotnetPackagesVersion)" />
     <PackageVersion Include="Microsoft.AspNetCore.Authentication.OpenIdConnect" Version="$(DotnetPackagesVersion)" />
+    <PackageVersion Include="Microsoft.AspNetCore.Components.WebAssembly" Version="$(DotnetPackagesVersion)" />
+    <PackageVersion Include="Microsoft.AspNetCore.Components.WebAssembly.Server" Version="$(DotnetPackagesVersion)" />
+    <PackageVersion Include="Microsoft.AspNetCore.Components.WebAssembly.Authentication" Version="$(DotnetPackagesVersion)" />
     <PackageVersion Include="Microsoft.AspNetCore.Components.QuickGrid" Version="$(DotnetPackagesVersion)" />
     <PackageVersion Include="Microsoft.AspNetCore.Components.Web" Version="$(DotnetPackagesVersion)" />
+    <PackageVersion Include="Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore" Version="$(DotnetPackagesVersion)" />
     <PackageVersion Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="$(DotnetPackagesVersion)" />
     <PackageVersion Include="Microsoft.AspNetCore.Identity.UI" Version="$(DotnetPackagesVersion)" />
     <PackageVersion Include="Microsoft.AspNetCore.Mvc.Testing" Version="$(DotnetPackagesVersion)" />
@@ -42,6 +46,8 @@
     <PackageVersion Include="Microsoft.OpenApi" Version="3.9.0" />
     <PackageVersion Include="MSTest" Version="4.3.2" />
     <!-- Version together with EF -->
+    <PackageVersion Include="Microsoft.EntityFrameworkCore.SqlServer" Version="$(DotnetPackagesVersion)" />
+    <PackageVersion Include="Microsoft.EntityFrameworkCore.Design" Version="$(DotnetPackagesVersion)" />
     <PackageVersion Include="Microsoft.EntityFrameworkCore.Tools" Version="$(DotnetPackagesVersion)" />
     <PackageVersion Include="Microsoft.EntityFrameworkCore.Relational" Version="$(DotnetPackagesVersion)" />
     <PackageVersion Include="NSubstitute" Version="6.0.0" />
@@ -86,6 +92,13 @@
     <PackageVersion Include="SQLitePCLRaw.bundle_green" Version="2.1.11" />
     <PackageVersion Include="SQLitePCLRaw.lib.e_sqlite3" Version="2.1.12" />
     <PackageVersion Include="SQLitePCLRaw.lib.e_sqlite3.android" Version="2.1.12" />
+    <!-- Test -->
+    <PackageVersion Include="coverlet.collector" Version="6.0.4" />
+    <PackageVersion Include="Microsoft.NET.Test.Sdk" Version="17.14.0" />
+    <PackageVersion Include="Microsoft.Playwright.NUnit" Version="1.52.0" />
+    <PackageVersion Include="NUnit" Version="4.3.2" />
+    <PackageVersion Include="NUnit.Analyzers" Version="4.7.0" />
+    <PackageVersion Include="NUnit3TestAdapter" Version="6.3.0" />
     <!-- Miscellaneous -->
     <PackageVersion Include="Dapper" Version="2.1.79" />
     <PackageVersion Include="FluentValidation" Version="12.1.1" />
