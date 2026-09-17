@@ -110,7 +110,7 @@ jobs:
         key: maui-workloads-${{ hashFiles('global.json') }}
     - name: Install MAUI workloads
       if: matrix.build-mode == 'manual' && steps.workload-cache.outputs.cache-hit != 'true'
-      run: dotnet workload install maui-net10.0-windows10.0.19041.0 --skip-manifest-update
+      run: dotnet workload install maui --skip-manifest-update
     - name: Build
       if: matrix.build-mode == 'manual'
       run: dotnet build TimeManagement.slnx
